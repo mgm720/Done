@@ -13,6 +13,7 @@
 		5CEB69AC21E2FFDD003FC4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CEB69AB21E2FFDD003FC4BE /* Assets.xcassets */; };
 		5CEB69AF21E2FFDD003FC4BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CEB69AD21E2FFDD003FC4BE /* LaunchScreen.storyboard */; };
 		5CEB69B721E300C8003FC4BE /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */; };
+		5CEB69C821E30F43003FC4BE /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB69C721E30F43003FC4BE /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5CEB69AE21E2FFDD003FC4BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CEB69B021E2FFDD003FC4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		5CEB69C721E30F43003FC4BE /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,9 @@
 		5CEB69A021E2FFD9003FC4BE /* Done */ = {
 			isa = PBXGroup;
 			children = (
+				5CEB69C621E30EF0003FC4BE /* Controller */,
 				5CEB69BF21E30CFA003FC4BE /* Model */,
 				5CEB69C121E30D0B003FC4BE /* View */,
-				5CEB69C021E30D05003FC4BE /* Controller */,
 				5CEB69AB21E2FFDD003FC4BE /* Assets.xcassets */,
 				5CEB69B021E2FFDD003FC4BE /* Info.plist */,
 			);
@@ -73,16 +75,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5CEB69C021E30D05003FC4BE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5CEB69A121E2FFD9003FC4BE /* AppDelegate.swift */,
-				5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */,
-			);
-			name = Controller;
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
 		5CEB69C121E30D0B003FC4BE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +82,16 @@
 				5CEB69AD21E2FFDD003FC4BE /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5CEB69C621E30EF0003FC4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5CEB69A121E2FFD9003FC4BE /* AppDelegate.swift */,
+				5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */,
+				5CEB69C721E30F43003FC4BE /* NewTaskViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +167,7 @@
 			files = (
 				5CEB69AA21E2FFD9003FC4BE /* Done.xcdatamodeld in Sources */,
 				5CEB69B721E300C8003FC4BE /* MainTableViewController.swift in Sources */,
+				5CEB69C821E30F43003FC4BE /* NewTaskViewController.swift in Sources */,
 				5CEB69A221E2FFD9003FC4BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
