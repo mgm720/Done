@@ -14,6 +14,7 @@
 		5CEB69AF21E2FFDD003FC4BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CEB69AD21E2FFDD003FC4BE /* LaunchScreen.storyboard */; };
 		5CEB69B721E300C8003FC4BE /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */; };
 		5CEB69C821E30F43003FC4BE /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB69C721E30F43003FC4BE /* NewTaskViewController.swift */; };
+		5CEB69CA21E3EA1A003FC4BE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB69C921E3EA1A003FC4BE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5CEB69B021E2FFDD003FC4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CEB69B621E300C8003FC4BE /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		5CEB69C721E30F43003FC4BE /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		5CEB69C921E3EA1A003FC4BE /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				5CEB69A521E2FFD9003FC4BE /* Main.storyboard */,
+				5CEB69C921E3EA1A003FC4BE /* TaskCell.swift */,
 				5CEB69AD21E2FFDD003FC4BE /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -169,6 +172,7 @@
 				5CEB69B721E300C8003FC4BE /* MainTableViewController.swift in Sources */,
 				5CEB69C821E30F43003FC4BE /* NewTaskViewController.swift in Sources */,
 				5CEB69A221E2FFD9003FC4BE /* AppDelegate.swift in Sources */,
+				5CEB69CA21E3EA1A003FC4BE /* TaskCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

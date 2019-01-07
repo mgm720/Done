@@ -17,6 +17,7 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var timeTextField: UITextField!
     
+    //created this toolbar extension to add a "Done" button that will dismiss the keyboard/date picker
     let toolBar = UIToolbar().ToolbarPicker(mySelect: #selector(NewTaskViewController.dismissPicker))
     
     var datePicker: UIDatePicker?
@@ -63,13 +64,36 @@ class NewTaskViewController: UIViewController {
         timeTextField.text = timeFormatter.string(from: timePicker.date)
         print(timeFormatter.string(from: timePicker.date))
     }
-
     @objc func dismissPicker() {
         view.endEditing(true)
     }
     
     
     // MARK: Save Data
+    @IBAction func submitButtonPressed(_ sender: Any) {
+        let newTask = Task(context: self.context)
+        
+        if (nameTextField.text?.isEmpty == true || dateTextField.text?.isEmpty == true) {
+            let alert = UIAlertController(title: "Missing Data", message: "Name and Date are required.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            newTask.name = nameTextField.text
+            newTask.dueDate = datePicker?.date
+            if timeTextField.text?.isEmpty == true {
+                print("Item saved without time")
+            } else {
+                newTask.dueTime = timePicker?.date
+            }
+            saveData()
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    
+    
     func saveData() {
         do {
             try context.save()

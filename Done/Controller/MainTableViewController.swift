@@ -13,10 +13,13 @@ class MainTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var taskArray = [Task]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         loadData()
     }
 
@@ -27,7 +30,7 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return taskArray.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -39,9 +42,17 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
 
-        // Configure the cell...
+        cell.nameLabel.text = taskArray[indexPath.row].name ?? "Add Items"
+        
+        if taskArray[indexPath.row].dueTime == nil {
+            cell.timeLabel.text = ""
+        } else {
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            cell.timeLabel.text = timeFormatter.string(from: taskArray[indexPath.row].dueTime!)
+        }
 
         return cell
     }
