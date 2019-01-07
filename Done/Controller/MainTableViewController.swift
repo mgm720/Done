@@ -46,6 +46,12 @@ class MainTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: Add New Task
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "newTaskSegue", sender: self)
+    }
+    
+    
     // MARK: Save & Load Data
     func saveData() {
         do {

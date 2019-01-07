@@ -7,16 +7,79 @@
 //
 
 import UIKit
+import CoreData
 
 class NewTaskViewController: UIViewController {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var timeTextField: UITextField!
+    
+    let toolBar = UIToolbar().ToolbarPicker(mySelect: #selector(NewTaskViewController.dismissPicker))
+    
+    var datePicker: UIDatePicker?
+    var timePicker: UIDatePicker?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameTextField.inputAccessoryView = toolBar
 
-        // Do any additional setup after loading the view.
+        //uses GestureRecognizer to hide keyboard and datePicker when view is tapped
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(NewTaskViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    //MARK: Editing the text fields
+    @IBAction func dateBeginEditing(_ sender: Any) {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(NewTaskViewController.dateChanged(datePicker:)), for: .valueChanged)
+        dateTextField.inputView = datePicker
+        dateTextField.inputAccessoryView = toolBar
+    }
+    @objc func dateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateTextField.text = dateFormatter.string(from: datePicker.date)
+    }
+    
+    @IBAction func timeBeginEditing(_ sender: Any) {
+        timePicker = UIDatePicker()
+        timePicker?.datePickerMode = .time
+        timePicker?.addTarget(self, action: #selector(NewTaskViewController.timeChanged(timePicker:)), for: .valueChanged)
+        timeTextField.inputView = timePicker
+        timeTextField.inputAccessoryView = toolBar
+    }
+    @objc func timeChanged(timePicker: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        timeTextField.text = timeFormatter.string(from: timePicker.date)
+        print(timeFormatter.string(from: timePicker.date))
+    }
+
+    @objc func dismissPicker() {
+        view.endEditing(true)
+    }
+    
+    
+    // MARK: Save Data
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
     }
     
 
+    
     /*
     // MARK: - Navigation
 
@@ -27,4 +90,26 @@ class NewTaskViewController: UIViewController {
     }
     */
 
+}
+
+extension UIToolbar {
+    
+    func ToolbarPicker(mySelect : Selector) -> UIToolbar {
+        
+        let toolBar = UIToolbar()
+        
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: mySelect)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        
+        toolBar.setItems([ spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        return toolBar
+    }
+    
 }
