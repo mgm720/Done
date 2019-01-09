@@ -27,6 +27,8 @@ class NewTaskViewController: UIViewController {
         super.viewDidLoad()
         
         nameTextField.inputAccessoryView = toolBar
+        
+        setDefaultDate()
 
         //uses GestureRecognizer to hide keyboard and datePicker when view is tapped
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(NewTaskViewController.viewTapped(gestureRecognizer:)))
@@ -39,8 +41,13 @@ class NewTaskViewController: UIViewController {
     
     //MARK: Editing the text fields
     @IBAction func dateBeginEditing(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
+        if let date = formatter.date(from: dateTextField.text!) {
+            datePicker?.date = date
+        }
         datePicker?.addTarget(self, action: #selector(NewTaskViewController.dateChanged(datePicker:)), for: .valueChanged)
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = toolBar
@@ -52,11 +59,20 @@ class NewTaskViewController: UIViewController {
     }
     
     @IBAction func timeBeginEditing(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        if timeTextField.text?.isEmpty == true {
+        timeTextField.text = "12:00 PM"
+        }
         timePicker = UIDatePicker()
         timePicker?.datePickerMode = .time
+        if let date = formatter.date(from: timeTextField.text!) {
+            timePicker?.date = date
+        }
         timePicker?.addTarget(self, action: #selector(NewTaskViewController.timeChanged(timePicker:)), for: .valueChanged)
         timeTextField.inputView = timePicker
         timeTextField.inputAccessoryView = toolBar
+        timePicker?.minuteInterval = 5
     }
     @objc func timeChanged(timePicker: UIDatePicker) {
         let timeFormatter = DateFormatter()
@@ -66,6 +82,12 @@ class NewTaskViewController: UIViewController {
     }
     @objc func dismissPicker() {
         view.endEditing(true)
+    }
+    
+    func setDefaultDate() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        dateTextField.text = formatter.string(from: Date())
     }
     
     
