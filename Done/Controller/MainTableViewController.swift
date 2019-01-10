@@ -26,7 +26,7 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view functions
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +76,8 @@ class MainTableViewController: UITableViewController {
     func loadData() {
         let request : NSFetchRequest<Task> = Task.fetchRequest()
         let sort = NSSortDescriptor(key: "dueDate", ascending: false)
-        request.sortDescriptors = [sort]
+        let sort2 = NSSortDescriptor(key: "dueTime", ascending: false)
+        request.sortDescriptors = [sort, sort2]
         
         do {
             taskArray = try context.fetch(request)
