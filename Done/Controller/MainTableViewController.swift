@@ -75,6 +75,8 @@ class MainTableViewController: UITableViewController {
     
     func loadData() {
         let request : NSFetchRequest<Task> = Task.fetchRequest()
+        let sort = NSSortDescriptor(key: "dueDate", ascending: false)
+        request.sortDescriptors = [sort]
         
         do {
             taskArray = try context.fetch(request)

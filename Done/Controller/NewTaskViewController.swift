@@ -103,7 +103,13 @@ class NewTaskViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             newTask.name = nameTextField.text
-            newTask.dueDate = datePicker?.date
+            if datePicker?.date == nil {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yyyy"
+                newTask.dueDate = formatter.date(from: dateTextField.text!)
+            } else {
+                newTask.dueDate = datePicker?.date
+            }
             if timeTextField.text?.isEmpty == true {
                 print("Item saved without time")
             } else {
