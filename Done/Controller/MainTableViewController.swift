@@ -11,12 +11,11 @@ import CoreData
 
 class MainTableViewController: UITableViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext   
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var fetchController : NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadData()
     }
     
@@ -24,7 +23,7 @@ class MainTableViewController: UITableViewController {
         loadData()
     }
 
-    // MARK: - Table view functions
+    // MARK: - Table View Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let frc = fetchController {
             return frc.sections!.count
@@ -38,9 +37,17 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let sectionInfo = fetchController?.sections?[section] else {
-            return nil
+            return "Add Items"
         }
-        return sectionInfo.name
+        // convert section name to date to change the format
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
+        let date = formatter.date(from: sectionInfo.name)
+        // convert back to string
+        formatter.dateFormat = "MMM d, yyyy"
+        let newDate = formatter.string(from: date ?? Date())
+
+        return newDate
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
